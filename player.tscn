@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://el8o6ptd7hog"]
+
+[ext_resource type="Script" uid="uid://cic334dlp7q4o" path="res://player.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://eq7uem0eq2bo" path="res://textures/tilemap-characters_packed.png" id="2_i3pqv"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1bvp3"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(0, 0, 48, 25)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nicuo"]
+size = Vector2(18, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_onrkg"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(0, 0, 24, 24)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_i3pqv"]
+atlas = ExtResource("2_i3pqv")
+region = Rect2(24, 0, 24, 24)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_onrkg"]
+animations = [{
+"frames": [{
+"duration": 0.5,
+"texture": SubResource("AtlasTexture_onrkg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_i3pqv")
+}],
+"loop": 1,
+"name": &"walk",
+"speed": 7.0
+}]
+
+[node name="Player" type="CharacterBody2D" unique_id=1376273787]
+scale = Vector2(2.5, 2.5)
+script = ExtResource("1_onrkg")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=1668146085]
+visible = false
+texture = SubResource("AtlasTexture_1bvp3")
+hframes = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1632402220]
+position = Vector2(0, 1)
+shape = SubResource("RectangleShape2D_nicuo")
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=609061809]
+zoom = Vector2(1.5, 1.5)
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1278568581]
+sprite_frames = SubResource("SpriteFrames_onrkg")
+animation = &"walk"
+flip_h = true
